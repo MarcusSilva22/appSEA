@@ -1,4 +1,4 @@
-package br.com.ctis.model;
+package br.com.sea.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,10 +10,16 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "TB_USER")
+
+@NamedQueries({
+    @NamedQuery(name = "User.findAll", query = "SELECT user FROM User user"),
+    @NamedQuery(name = "User.byId", query = "SELECT user FROM User user WHERE user.id_User = :id_User"),    
+    @NamedQuery(name = "User.byName", query = "SELECT user FROM User user WHERE user.name = :name")
+})
 public class User implements Serializable {
 
     @OneToMany(mappedBy = "id_User")
-    private List<Andress> andresss;
+    private List<Address> address_user;
 
     @Id
     @Column(name = "ID_USER")
@@ -31,12 +37,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "phones_user")
     private List<Phone> phone;
 
-    public List<Andress> getAndresss() {
-        return andresss;
+    public List<Address> getAndresss() {
+        return address_user;
     }
 
-    public void setAndresss(List<Andress> andresss) {
-        this.andresss = andresss;
+    public void setAndresss(List<Address> address_user) {
+        this.address_user = address_user;
     }
 
     public Long getId_User() {

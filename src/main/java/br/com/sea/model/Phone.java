@@ -1,4 +1,4 @@
-package br.com.ctis.model;
+package br.com.sea.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
