@@ -1,0 +1,63 @@
+<div class="col-md-8 col-md-offset-2">
+
+    <form name="myForm" novalidate>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+
+                    <label class="control-label">Nome</label>
+                    <input type="text" class="form-control"
+                           ng-model="pessoa.nome" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+
+                <div class="col-md-12">
+                    <label  class=" control-label">Data Nascimento</label>
+                    <input type="text" class="form-control"  ng-model="pessoa.data_Nascimento" 
+                           mask="39/19/9999" required>
+                </div>
+            </div>
+        </div>        
+
+        <div class="row">
+            <div class="form-group">
+
+                <div class="col-md-12">
+                    <label class="control-label">Sexo</label>
+                    <select class="form-control" ng-model="pessoa.sexo" 
+                            ng-options="sexo.descricao for sexo in Sexo"
+                            required>
+                        <option ng-selected="true" ng-disabled="true">Selecione</option>                        
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <label class="control-label">&nbsp;</label>
+                    <input type="button" class="btn btn-success form-control" 
+                           ng-click="save(pessoa)" value="Cadastrar" 
+                           ng-disabled="myForm.$error.required"> 
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label">&nbsp;</label>
+                    <a href="#/home">
+                        <input type="button" class="btn btn-danger form-control" 
+                               value="Voltar"> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+<!--//modal de alerta-->
+<div ng-include="'angular/Pessoa/template/alerta.html'"></div>
+
+
+
+</div>

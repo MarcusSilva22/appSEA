@@ -1,0 +1,72 @@
+<div class="col-md-offset-1"> 
+    <div class="row">
+        <div class="form-group col-md-3 col-md-offset-2">
+            <label> Campo de Pesquisa </label>
+            <input type="text" class="form-control" ng-model="campoPesquisa">  
+        </div>
+        <div class="form-group col-md-2 ">
+            <label> Pesquisar </label>
+            <select class="form-control" ng-model="tipoDePesquisa">
+                <option ng-selected="true" ng-disabled="true">Selecione</option>
+                <option value="nome">Nome</option>
+                <option value="sexo">Sexo</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2 ">
+            <label> &nbsp; </label>
+            <button type="button" class="btn btn-primary form-control" 
+                    ng-show="tipoDePesquisa==='nome'"
+                    ng-click="getNome(campoPesquisa)"> Pesquisar </button>
+            <button type="button" class="btn btn-primary form-control" 
+                    ng-show="tipoDePesquisa==='sexo'"
+                    ng-click="getSexo(campoPesquisa)"> Pesquisar </button>
+        </div>
+    </div>    
+    <div class="row">        
+        <div class="col-md-5 col-md-offset-3">
+            <div class="form-group col-md-5 col-md-offset-7">
+                <label> &nbsp; </label>
+                <a href="#/cadastrar">
+                    <input type="button" class="btn btn-warning form-control" data-toggle="modal" 
+                           value="Adicionar nova pessoa"> 
+                </a>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th> Nome </th> 
+                        <th> Sexo </th> 
+                        <th> Data Nascimento </th>                        
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr dir-paginate="pessoa in list |itemsPerPage:5"> 
+                        <td>{{pessoa.nome}} </td> 
+                        <td>{{pessoa.sexo.descricao}} </td> 
+                        <td>{{pessoa.data_Nascimento}} </td> 
+                    </tr>
+
+                    <tr>
+                        <td colspan="4" ng-show="erroList" class="text-center"> Sem Registros </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <!--pagina��o-->
+    <div class="row">
+        <div class="col-md-offset-4 ">
+            <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true" >
+            </dir-pagination-controls>
+        </div>
+    </div>
+
+
+</div>
