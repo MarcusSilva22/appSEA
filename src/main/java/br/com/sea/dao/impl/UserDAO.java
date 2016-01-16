@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDAO implements IUserDAO {
 
-    @PersistenceContext
+    @PersistenceContext(name="DesafioPU")
     private EntityManager em;
 
     @Override

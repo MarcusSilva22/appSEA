@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PhoneDAO implements IPhoneDAO {
 
-    @PersistenceContext
+    @PersistenceContext(name="DesafioPU")
     private EntityManager em;
 
     @Override
@@ -60,7 +60,12 @@ public class PhoneDAO implements IPhoneDAO {
 
     @Override
     public List<Phone> listPhone() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Phone> phones = em.createNamedQuery("Phone.findAll").getResultList();
+            return phones;
+        } catch (Exception e) {
+            System.out.println("Erro ao listar telefones!");
+        }
+        return null;
     }
-
 }

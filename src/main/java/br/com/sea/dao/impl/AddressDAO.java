@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AddressDAO implements IAddressDAO {
 
-    @PersistenceContext
+    @PersistenceContext(name="DesafioPU")
     private EntityManager em;
 
     @Override
@@ -65,7 +65,12 @@ public class AddressDAO implements IAddressDAO {
 
     @Override
     public List<Address> listAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Address> addresses = em.createNamedQuery("Address.findAll").getResultList();
+            return addresses;
+        } catch (Exception e) {
+            System.out.println("Erro ao listar telefones!");
+        }
+        return null;
     }
-
 }

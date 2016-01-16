@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_ADDRESS")
+@NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")
 public class Address implements Serializable {
     
     @Id

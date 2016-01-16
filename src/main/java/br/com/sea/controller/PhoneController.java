@@ -1,7 +1,7 @@
 package br.com.sea.controller;
 
-import br.com.sea.model.User;
-import br.com.sea.service.IUserService;
+import br.com.sea.model.Phone;
+import br.com.sea.service.IPhoneService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Marcus
  */
 @Controller
-@RequestMapping(value = "users")
-public class UserController {
+@RequestMapping(value = "phones")
+public class PhoneController {
 
     @Autowired
-    IUserService service;
+    IPhoneService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity saveUser(@RequestBody User user) {
+    public ResponseEntity savePhone(@RequestBody Phone phone) {
         try {
-            service.saveUser(user);
+            service.savePhone(phone);
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity(HttpStatus.CONFLICT);
@@ -35,42 +35,31 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@RequestBody User user) {
+    public ResponseEntity updatePhone(@RequestBody Phone phone) {
         try {
-            service.updateUser(user);
+            service.updatePhone(phone);
             return new ResponseEntity(HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
     }
 
-    @RequestMapping(value = "{id_User}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteUser(@PathVariable("id_User") Long id_User) {
+    @RequestMapping(value = "{id_Phone}", method = RequestMethod.DELETE)
+    public ResponseEntity deletePhone(@PathVariable("id_Phone") Long id_Phone) {
         try {
-            service.removeUser(id_User);
+            service.removePhone(id_Phone);
             return new ResponseEntity(HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity(HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = "{name}", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity listUserByName(@PathVariable("name") String name) {
-        try {
-            List<User> user = service.getName(name);
-            return new ResponseEntity(user, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity listUser() {
+    public ResponseEntity listPhone() {
         try {
-            List<User> user = service.listUser();
-            return new ResponseEntity(user, HttpStatus.OK);
+            List<Phone> phones = service.listPhone();
+            return new ResponseEntity(phones, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }

@@ -3,6 +3,7 @@ package br.com.sea.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -12,14 +13,11 @@ import javax.persistence.*;
 @Table(name = "TB_USER")
 
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT user FROM User user"),
-    @NamedQuery(name = "User.byId", query = "SELECT user FROM User user WHERE user.id_User = :id_User"),    
-    @NamedQuery(name = "User.byName", query = "SELECT user FROM User user WHERE user.name = :name")
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.byId", query = "SELECT u FROM User u WHERE u.id_User = :id_User"),
+    @NamedQuery(name = "User.byName", query = "SELECT u FROM User u WHERE u.name = :name")
 })
 public class User implements Serializable {
-
-    @OneToMany(mappedBy = "id_User")
-    private List<Address> address_user;
 
     @Id
     @Column(name = "ID_USER")
@@ -28,22 +26,19 @@ public class User implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "DATA_BRITH")
-    private String data_Brith;
+    @Column(name = "BIRTHDAY_DATE")
+    private String birthday_Date;
 
     @Column(name = "EMAIL")
     private String email;
-    
+
+    @JsonIgnore
     @OneToMany(mappedBy = "phones_user")
     private List<Phone> phone;
 
-    public List<Address> getAndresss() {
-        return address_user;
-    }
-
-    public void setAndresss(List<Address> address_user) {
-        this.address_user = address_user;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "address_user")
+    private List<Address> address;
 
     public Long getId_User() {
         return id_User;
@@ -61,12 +56,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getData_Brith() {
-        return data_Brith;
+    public String getBirthday_Date() {
+        return birthday_Date;
     }
 
-    public void setData_Brith(String data_Brith) {
-        this.data_Brith = data_Brith;
+    public void setData_Brith(String birthday_Date) {
+        this.birthday_Date = birthday_Date;
     }
 
     public String getEmail() {
@@ -84,4 +79,14 @@ public class User implements Serializable {
     public void setPhone(List<Phone> phone) {
         this.phone = phone;
     }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+
+    
 }
