@@ -1,72 +1,66 @@
-<div class="col-md-offset-1"> 
+<br>
+<div class="container">      
     <div class="row">
-        <div class="form-group col-md-3 col-md-offset-2">
-            <label> Campo de Pesquisa </label>
-            <input type="text" class="form-control" ng-model="campoPesquisa">  
+        <div class="col s11">
+            <nav class="transparent">
+                <div class="nav-wrapper">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" placeholder="O que esta buscando?" 
+                                   ng-model="search.name_User"
+                                   ng-required="true">
+                            <i class="material-icons" ng-click="getUserbyName(search.name_User)">
+                                search</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
         </div>
-        <div class="form-group col-md-2 ">
-            <label> Pesquisar </label>
-            <select class="form-control" ng-model="tipoDePesquisa">
-                <option ng-selected="true" ng-disabled="true">Selecione</option>
-                <option value="nome">Nome</option>
-                <option value="sexo">Sexo</option>
-            </select>
+        <div class="col s1">
+            <a class="btn-floating btn-large waves-effect waves-light blue darken-1" href="#/cadastrar">
+                <i class="material-icons">add</i></a>
+            <!-- 
+              <a class="waves-effect waves-light btn">Novo Usuário</a>
+            -->
         </div>
-        <div class="form-group col-md-2 ">
-            <label> &nbsp; </label>
-            <button type="button" class="btn btn-primary form-control" 
-                    ng-show="tipoDePesquisa==='nome'"
-                    ng-click="getNome(campoPesquisa)"> Pesquisar </button>
-            <button type="button" class="btn btn-primary form-control" 
-                    ng-show="tipoDePesquisa==='sexo'"
-                    ng-click="getSexo(campoPesquisa)"> Pesquisar </button>
-        </div>
-    </div>    
-    <div class="row">        
-        <div class="col-md-5 col-md-offset-3">
-            <div class="form-group col-md-5 col-md-offset-7">
-                <label> &nbsp; </label>
-                <a href="#/cadastrar">
-                    <input type="button" class="btn btn-warning form-control" data-toggle="modal" 
-                           value="Adicionar nova pessoa"> 
-                </a>
-            </div>
-            <table class="table table-bordered table-hover">
+    </div>  
+    <div class="row">
+        <div class="col s12">
+            <table class="bordered highlight responsive-table">
                 <thead>
-                    <tr>
-                        <th> Nome </th> 
-                        <th> Sexo </th> 
-                        <th> Data Nascimento </th>                        
+                    <tr>                        
+                        <th class="center" data-field="id">ID Usuario</th>
+                        <th class="center" data-field="name">Nome</th>
+                        <th class="center" data-field="data_Nascimento">Data Nascimento</th>
+                        <th class="center" data-field="telefone">Telefone</th>
+                        <th class="center" data-field="logradouro">Logradouro</th>                        
+                        <th class="center" data-field="cidade">Cidade</th>
+                        <th class="center">Editar</th>
+                        <th class="center">Remover</th>
                     </tr>
                 </thead>
-
                 <tbody>
-
-                    <tr dir-paginate="pessoa in list |itemsPerPage:5"> 
-                        <td>{{pessoa.nome}} </td> 
-                        <td>{{pessoa.sexo.descricao}} </td> 
-                        <td>{{pessoa.data_Nascimento}} </td> 
-                    </tr>
-
-                    <tr>
-                        <td colspan="4" ng-show="erroList" class="text-center"> Sem Registros </td>
-                    </tr>
+                    <tr ng-repeat="users in users">                                              
+                        <td class="center">{{users.id_User}}</td>
+                        <td class="center">{{users.name}}</td>
+                        <td class="center">{{users.birthday_Date}}</td>
+                        <td class="center">{{users.email}}</td>
+                        <td class="center">{{users.address.address}}</td>
+                        <td class="center">{{users.address.district_Address}}</td>                        
+                        <td class="center">                            
+                            <i class="material-icons prefix"
+                                ng-click="gerUserForm(users.id_User)"
+                               >search</i>
+                        </td>
+                        <td  class="center">
+                            <i class="material-icons prefix" 
+                               ng-click="removeUser(users.id_User)">
+                                delete
+                            </i>                       
+                        </td>
+                    </tr>                    
                 </tbody>
-
             </table>
         </div>
-    </div>
-
-    <!--paginaï¿½ï¿½o-->
-    <div class="row">
-        <div class="col-md-offset-4 ">
-            <dir-pagination-controls
-                max-size="5"
-                direction-links="true"
-                boundary-links="true" >
-            </dir-pagination-controls>
-        </div>
-    </div>
-
-
+    </div>                
 </div>

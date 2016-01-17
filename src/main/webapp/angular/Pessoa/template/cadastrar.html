@@ -1,63 +1,69 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="container">      
+    <div class="row">
+        <div class="input-field col s2">            
+            <i class="material-icons prefix">info_outline</i>
+            <input id="id_Usuario" type="text" ng-disabled="true" ng-model="user.id_User">            
 
-    <form name="myForm" novalidate>
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-12">
-
-                    <label class="control-label">Nome</label>
-                    <input type="text" class="form-control"
-                           ng-model="pessoa.nome" required>
-                </div>
-            </div>
         </div>
-
-        <div class="row">
-            <div class="form-group">
-
-                <div class="col-md-12">
-                    <label  class=" control-label">Data Nascimento</label>
-                    <input type="text" class="form-control"  ng-model="pessoa.data_Nascimento" 
-                           mask="39/19/9999" required>
-                </div>
-            </div>
-        </div>        
-
-        <div class="row">
-            <div class="form-group">
-
-                <div class="col-md-12">
-                    <label class="control-label">Sexo</label>
-                    <select class="form-control" ng-model="pessoa.sexo" 
-                            ng-options="sexo.descricao for sexo in Sexo"
-                            required>
-                        <option ng-selected="true" ng-disabled="true">Selecione</option>                        
-                    </select>
-                </div>
-            </div>
+        <div class="input-field col s10">
+            <i class="material-icons prefix">person</i>
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" ng-model="user.name">
+            
         </div>
-
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-4 col-md-offset-2">
-                    <label class="control-label">&nbsp;</label>
-                    <input type="button" class="btn btn-success form-control" 
-                           ng-click="save(pessoa)" value="Cadastrar" 
-                           ng-disabled="myForm.$error.required"> 
-                </div>
-                <div class="col-md-4">
-                    <label class="control-label">&nbsp;</label>
-                    <a href="#/home">
-                        <input type="button" class="btn btn-danger form-control" 
-                               value="Voltar"> 
-                    </a>
-                </div>
-            </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s2">          
+            <i class="material-icons prefix">info_outline</i>
+            <input type="date" class="datepicker" ng-model="user.birthday_Date">
+            <label>Data</label>
         </div>
-    </form>
-<!--//modal de alerta-->
-<div ng-include="'angular/Pessoa/template/alerta.html'"></div>
-
-
-
-</div>
+        <div class="input-field col s5">
+            <i class="material-icons prefix">email</i>
+            <input id="email" type="email" class="validate" ng-model="user.email">
+            <label for="email" data-error="Formato invalido"
+                   data-success="Formato valido">Email</label>
+        </div>
+        <div class="input-field col s5">
+            <i class="material-icons prefix">phone</i>
+            <input id="telefone" type="number" ng-model="user.phone">
+            <label for="telefone">Telefone</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <i class="material-icons prefix">info_outline</i>
+            <input id="logradouro" type="text" ng-model="user.address.address">
+            <label for="logradouro">Logradouro</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s5">
+            <i class="material-icons prefix">info_outline</i>
+            <input id="complemento" type="text" ng-model="user.address.supplement">
+            <label for="complemento">Complemento</label>
+        </div>
+        <div class="input-field col s5">
+            <i class="material-icons prefix">info_outline</i>                
+            <input id="cidade" type="text" ng-model="user.address.district_Address">
+            <label for="cidade">Cidade</label>
+        </div>
+        <div class="input-field col s2">                       
+            <select class="" ng-model="user.address.uf_Address">
+                <option value="1" ng-disabled="false" ng-selected="true">UF</option>
+                <option ng-repeat="estado in estados" value="{{estado.Sigla}}">
+                    {{estado.Sigla}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="row center">
+        <a class="waves-effect waves-light btn blue darken-4" ng-click="chooseOption(user)">            
+            Salvar            
+        </a>
+        <a href="#/home" class="waves-effect waves-light btn  amber darken-4">          
+            Cancelar
+        </a>
+    </div>
+</div>      
+<script src="lib/materialize/js/script.js" type="text/javascript"></script>
