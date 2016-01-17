@@ -18,7 +18,7 @@ public class UserService implements IUserService {
     @Autowired
     private IUserDAO dao;
 
-    public void setPessoaDAO(IUserDAO UserDAO) {
+    public void setUserDAO(IUserDAO UserDAO) {
         this.dao = UserDAO;
     }
 

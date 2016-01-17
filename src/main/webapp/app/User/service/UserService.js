@@ -1,4 +1,4 @@
-services.service('PessoaService', function ($http, backend) {
+services.service('UserService', function ($http, backend) {
 
     var url = backend + '/users/';    
 

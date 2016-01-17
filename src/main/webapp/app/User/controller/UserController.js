@@ -1,11 +1,11 @@
-controllers.controller('PessoaController', function ($scope, PessoaService) {
+controllers.controller('UserController', function ($scope, UserService) {
         
     $scope.user;
     $scope.users;
 
     //Search users
     var getUsers = function () {
-        PessoaService.getUsers().then(function (response) {
+        UserService.getUsers().then(function (response) {
             $scope.users = response.data;
         }, function () {
             console.log("ERROR");
@@ -14,7 +14,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
 
     //Search users - name
     $scope.getUserbyName = function (name) {
-        PessoaService.getUserbyName(name).then(function (response) {
+        UserService.getUserbyName(name).then(function (response) {
             $scope.users = response.data;
         }, function () {
             console.log("ERROR");
@@ -49,7 +49,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
 
     //Save user
     $scope.saveUser = function (user) {
-        PessoaService.saveUser(user).success(function () {            
+        UserService.saveUser(user).success(function () {            
             Materialize.toast('Usuario Cadastrado!', 1000, 'rounded');
             window.location.href = "#/home";
         });
@@ -57,7 +57,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
 
     //Update user
     $scope.updateUser = function (user) {
-        PessoaService.updateUser(user).success(function () {
+        UserService.updateUser(user).success(function () {
             Materialize.toast('Usuario Atualizado!', 1000, 'rounded');
             window.location.href = "#/home";
         });
@@ -65,7 +65,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
 
     //Remove user   
     $scope.removeUser = function (id_User) {
-        PessoaService.removeUser(id_User).success(function () {
+        UserService.removeUser(id_User).success(function () {
             Materialize.toast('Usuario Removido!', 1000, 'rounded');
             getUsers();
         });

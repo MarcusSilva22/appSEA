@@ -18,7 +18,7 @@ public class AddressService implements IAddressService {
     @Autowired
     private IAddressDAO dao;
 
-    public void setPessoaDAO(IAddressDAO AddressDAO) {
+    public void setUserDAO(IAddressDAO AddressDAO) {
         this.dao = AddressDAO;
     }
 

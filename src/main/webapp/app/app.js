@@ -16,12 +16,12 @@ app.config(function ($routeProvider) {
 
     $routeProvider
             .when("/home", {
-                controller: "PessoaController",
-                templateUrl: "angular/Pessoa/template/home.html"
+                controller: "UserController",
+                templateUrl: "app/User/template/home.html"
             })
             .when("/cadastrar", {
-                controller: "PessoaController",
-                templateUrl: "angular/Pessoa/template/cadastrar.html"
+                controller: "UserController",
+                templateUrl: "app/User/template/cadastrar.html"
             })
             .otherwise({redirectTo: "/home"});
 });

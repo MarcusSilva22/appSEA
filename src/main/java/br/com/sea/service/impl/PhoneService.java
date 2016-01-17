@@ -18,7 +18,7 @@ public class PhoneService implements IPhoneService {
     @Autowired
     private IPhoneDAO dao;
 
-    public void setPessoaDAO(IPhoneDAO PhoneDAO) {
+    public void setUserDAO(IPhoneDAO PhoneDAO) {
         this.dao = PhoneDAO;
     }
 
