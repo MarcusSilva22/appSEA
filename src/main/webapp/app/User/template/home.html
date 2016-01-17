@@ -40,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="users in users">                                              
+                    <tr dir-paginate="users in users|itemsPerPage:2">                                              
                         <td class="center">{{users.id_User}}</td>
                         <td class="center">{{users.name}}</td>
                         <td class="center">{{users.birthday_Date}}</td>
@@ -49,7 +49,7 @@
                         <td class="center">{{users.address.district_Address}}</td>                        
                         <td class="center">                            
                             <i class="material-icons prefix"
-                                ng-click="gerUserForm(users.id_User)"
+                               ng-click="gerUserForm(users.id_User)"
                                >search</i>
                         </td>
                         <td  class="center">
@@ -61,6 +61,17 @@
                     </tr>                    
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-md-offset-4">
+                    <dir-pagination-controls
+                        class="center"
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="true" >
+                    </dir-pagination-controls>
+                </div>
+            </div>
+
         </div>
     </div>                
 </div>
