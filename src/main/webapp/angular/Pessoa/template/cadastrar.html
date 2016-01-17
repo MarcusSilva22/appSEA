@@ -1,70 +1,101 @@
-<div class="container">      
-    <div class="row">
-        <div class="input-field col s2">            
-            <i class="material-icons prefix">info_outline</i>
-            <input id="id_Usuario" type="text" ng-disabled="true" ng-model="user.id_User">            
+<form name="cadastro_User" novalidate >
+    <div class="container">      
+        <div class="row">
+            <div class="input-field col s2">            
+                <i class="material-icons prefix">info_outline</i>
+                <input id="id_Usuario" type="text" ng-disabled="true" 
+                       placeholder="ID" ng-model="user.id_User">
+            </div>
+            <div class="input-field col s10">
+                <i class="material-icons prefix">person</i>            
+                <input id="nome" type="text" ng-model="user.name"
+                       ng-required="true" placeholder="Nome">
 
+            </div>
         </div>
-        <div class="input-field col s10">
-            <i class="material-icons prefix">person</i>
-            
-            <input id="nome" type="text" ng-model="user.name" placeholder="Nome">
-            
+        <div class="row">
+            <div class="input-field col s2">          
+                <i class="material-icons prefix">info_outline</i>
+                <input type="date" class="datepicker" ng-model="user.birthday_Date"
+                       ng-required="true"
+                       placeholder="Data">            
+            </div>
+            <div class="input-field col s5">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate" 
+                       ng-required="true"
+                       placeholder="Email" ng-model="user.email">
+                <label for="email" data-error="Formato invalido"
+                       data-success="Formato valido"></label>
+            </div>
+            <div class="input-field col s5">
+                <i class="material-icons prefix">phone</i>
+                <input id="telefone" type="text" ng-model="user.phone.phone"
+                       ng-required="true"
+                       placeholder="Telefone">            
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s2">          
-            <i class="material-icons prefix">info_outline</i>
-            <input type="date" class="datepicker" ng-model="user.birthday_Date">
-            <label>Data</label>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">info_outline</i>
+                <input id="logradouro" type="text" ng-model="user.address.address"
+                       ng-required="true" placeholder="Logradouro">            
+            </div>
         </div>
-        <div class="input-field col s5">
-            <i class="material-icons prefix">email</i>
-            <input id="email" type="email" class="validate" ng-model="user.email">
-            <label for="email" data-error="Formato invalido"
-                   data-success="Formato valido">Email</label>
+        <div class="row">
+            <div class="input-field col s5">
+                <i class="material-icons prefix">info_outline</i>
+                <input id="complemento" type="text" ng-model="user.address.supplement"
+                       ng-required="true" placeholder="Complemento">            
+            </div>
+            <div class="input-field col s5">
+                <i class="material-icons prefix">info_outline</i>                
+                <input id="cidade" type="text" ng-model="user.address.district_Address"
+                       ng-required="true" placeholder="Cidade">
+            </div>
+            <div class="input-field col s2">                                       
+                <select class="" ng-model="user.address.uf_Address" 
+                         ng-required="true">                                        
+                    <option value="{{user.address.uf_Address}}" ng-disabled="false" ng-selected="true">{{user.address.uf_Address}}</option>                
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espirito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+        </div>        
+    </div>      
+</form>
+<div class="row center">
+            <button class="waves-effect waves-light btn blue darken-4" 
+               ng-disabled="cadastro_User.$error.required" ng-click="chooseOption(user)">            
+                Salvar            
+            </button>
+            <a href="#/home" class="waves-effect waves-light btn  amber darken-4">          
+                Cancelar
+            </a>
         </div>
-        <div class="input-field col s5">
-            <i class="material-icons prefix">phone</i>
-            <input id="telefone" type="number" ng-model="user.phone.phone">
-            <label for="telefone">Telefone</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <i class="material-icons prefix">info_outline</i>
-            <input id="logradouro" type="text" ng-model="user.address.address">
-            <label for="logradouro">Logradouro</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s5">
-            <i class="material-icons prefix">info_outline</i>
-            <input id="complemento" type="text" ng-model="user.address.supplement">
-            <label for="complemento">Complemento</label>
-        </div>
-        <div class="input-field col s5">
-            <i class="material-icons prefix">info_outline</i>                
-            <input id="cidade" type="text" ng-model="user.address.district_Address">
-            <label for="cidade">Cidade</label>
-        </div>
-        <div class="input-field col s2">                       
-            <select class="" ng-model="user.address.uf_Address">
-                <option value="1" ng-disabled="false" ng-selected="true">UF</option>
-                <option ng-repeat="estado in estados" value="{{estado.Sigla}}">
-                    {{estado.Sigla}}
-                </option>
-            </select>
-        </div>
-    </div>
-    <pre>{{user|json}}</pre>
-    <div class="row center">
-        <a class="waves-effect waves-light btn blue darken-4" ng-click="chooseOption(user)">            
-            Salvar            
-        </a>
-        <a href="#/home" class="waves-effect waves-light btn  amber darken-4">          
-            Cancelar
-        </a>
-    </div>
-</div>      
 <script src="lib/materialize/js/script.js" type="text/javascript"></script>

@@ -37,7 +37,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
             window.sessionStorage.setItem('user', JSON.stringify($scope.users[i]));
             window.location.href = '#/cadastrar';
         } else {
-            alert('Usuario nao encontrado');
+            Materialize.toast('Usuario não cadastrado!', 3000, 'rounded');
         }
     };
 
@@ -49,8 +49,8 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
 
     //Save user
     $scope.saveUser = function (user) {
-        PessoaService.saveUser(user).success(function () {
-            alert("Usuário cadastrado!");
+        PessoaService.saveUser(user).success(function () {            
+            Materialize.toast('Usuario Cadastrado!', 1000, 'rounded');
             window.location.href = "#/home";
         });
     };
@@ -58,7 +58,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
     //Update user
     $scope.updateUser = function (user) {
         PessoaService.updateUser(user).success(function () {
-            alert("Usuário alterado!");
+            Materialize.toast('Usuario Atualizado!', 1000, 'rounded');
             window.location.href = "#/home";
         });
     };
@@ -66,7 +66,7 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
     //Remove user   
     $scope.removeUser = function (id_User) {
         PessoaService.removeUser(id_User).success(function () {
-            alert("Usuário excluído!");
+            Materialize.toast('Usuario Removido!', 1000, 'rounded');
             getUsers();
         });
     };
@@ -80,19 +80,6 @@ controllers.controller('PessoaController', function ($scope, PessoaService) {
         $scope.updateUser(user);
         }
     };
-    
-    //JSON de Estados
-    $scope.estados = [{"ID": "1", "Sigla": "AC"}, {"ID": "2", "Sigla": "AL"},
-        {"ID": "3", "Sigla": "AM"}, {"ID": "4", "Sigla": "AP"}, {"ID": "5", "Sigla": "BA"},
-        {"ID": "6", "Sigla": "CE"}, {"ID": "7", "Sigla": "DF"}, {"ID": "8", "Sigla": "ES"},
-        {"ID": "9", "Sigla": "GO"}, {"ID": "10", "Sigla": "MA"}, {"ID": "11", "Sigla": "MG"},
-        {"ID": "12", "Sigla": "MS"}, {"ID": "13", "Sigla": "MT"}, {"ID": "14", "Sigla": "PA"},
-        {"ID": "15", "Sigla": "PB"}, {"ID": "16", "Sigla": "PE"}, {"ID": "17", "Sigla": "PI"},
-        {"ID": "18", "Sigla": "PR"}, {"ID": "19", "Sigla": "RJ"}, {"ID": "20", "Sigla": "RN"},
-        {"ID": "21", "Sigla": "RO"}, {"ID": "22", "Sigla": "RR"}, {"ID": "23", "Sigla": "RS"},
-        {"ID": "24", "Sigla": "SC"}, {"ID": "25", "Sigla": "SE"}, {"ID": "26", "Sigla": "SP"},
-        {"ID": "27", "Sigla": "TO"}];
-
     $scope.init();
     //Load list of users
     getUsers();
