@@ -21,11 +21,7 @@ public class Phone implements Serializable {
 
     @Column(name = "PHONE")
     private String phone;
-
-    @ManyToOne
-    @JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
-    private User phones_user;
-
+    
     public Long getId_Phone() {
         return id_Phone;
     }
@@ -40,14 +36,6 @@ public class Phone implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public User getId_User() {
-        return phones_user;
-    }
-
-    public void setId_User(User phones_user) {
-        this.phones_user = phones_user;
     }
 
 }

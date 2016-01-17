@@ -7,8 +7,8 @@
         </div>
         <div class="input-field col s10">
             <i class="material-icons prefix">person</i>
-            <label for="nome">Nome</label>
-            <input id="nome" type="text" ng-model="user.name">
+            
+            <input id="nome" type="text" ng-model="user.name" placeholder="Nome">
             
         </div>
     </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="input-field col s5">
             <i class="material-icons prefix">phone</i>
-            <input id="telefone" type="number" ng-model="user.phone">
+            <input id="telefone" type="number" ng-model="user.phone.phone">
             <label for="telefone">Telefone</label>
         </div>
     </div>
@@ -57,6 +57,7 @@
             </select>
         </div>
     </div>
+    <pre>{{user|json}}</pre>
     <div class="row center">
         <a class="waves-effect waves-light btn blue darken-4" ng-click="chooseOption(user)">            
             Salvar            

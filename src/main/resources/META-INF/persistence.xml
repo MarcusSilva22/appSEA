@@ -4,7 +4,7 @@
         <properties>
            
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />            
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>                        

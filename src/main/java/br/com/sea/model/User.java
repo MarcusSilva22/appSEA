@@ -1,9 +1,7 @@
 package br.com.sea.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -19,7 +17,6 @@ import org.hibernate.annotations.GenericGenerator;
     @NamedQuery(name = "User.byName", query = "SELECT u FROM User u WHERE u.name = :name")
 })
 public class User implements Serializable {
-
     @Id
     @GenericGenerator(name = "idUser", strategy = "increment")
     @GeneratedValue(generator = "idUser")
@@ -34,10 +31,9 @@ public class User implements Serializable {
 
     @Column(name = "EMAIL")
     private String email;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "phones_user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Phone> phone;
+    
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private Phone phone;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Address address;
@@ -74,11 +70,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public List<Phone> getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
-    public void setPhone(List<Phone> phone) {
+    public void setPhone(Phone phone) {
         this.phone = phone;
     }
 
@@ -89,5 +85,4 @@ public class User implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-
 }
