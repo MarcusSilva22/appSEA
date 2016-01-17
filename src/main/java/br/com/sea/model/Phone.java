@@ -2,6 +2,7 @@ package br.com.sea.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -13,6 +14,8 @@ import javax.persistence.*;
 public class Phone implements Serializable {
 
     @Id
+    @GenericGenerator(name = "idPhone", strategy = "increment")
+    @GeneratedValue(generator = "idPhone")
     @Column(name = "ID_PHONE")
     private Long id_Phone;
 

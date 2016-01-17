@@ -2,6 +2,7 @@ package br.com.sea.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -14,6 +15,8 @@ import javax.persistence.*;
 public class Address implements Serializable {
     
     @Id
+    @GenericGenerator(name = "idAddress", strategy = "increment")
+    @GeneratedValue(generator = "idAddress")
     @Column(name="ID_ADDRESS")
     private Long id_Address;
     
@@ -22,10 +25,6 @@ public class Address implements Serializable {
     
     @Column(name="SUPPLEMENT")
     private String supplement;
-    
-    @ManyToOne
-    @JoinColumn(name="ID_USER", referencedColumnName = "ID_USER")
-    private User address_user;
        
     @Column(name="DISTRICT")
     private String district_Address;
@@ -55,14 +54,6 @@ public class Address implements Serializable {
 
     public void setSupplement(String supplement) {
         this.supplement = supplement;
-    }
-
-    public User getAddress_user() {
-        return address_user;
-    }
-
-    public void setAddress_user(User address_user) {
-        this.address_user = address_user;
     }
 
     public String getDistrict_Address() {

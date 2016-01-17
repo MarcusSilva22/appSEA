@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -20,6 +21,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class User implements Serializable {
 
     @Id
+    @GenericGenerator(name = "idUser", strategy = "increment")
+    @GeneratedValue(generator = "idUser")
     @Column(name = "ID_USER")
     private Long id_User;
 
@@ -33,12 +36,11 @@ public class User implements Serializable {
     private String email;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "phones_user")
+    @OneToMany(mappedBy = "phones_user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Phone> phone;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "address_user")
-    private List<Address> address;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private Address address;
 
     public Long getId_User() {
         return id_User;
@@ -80,13 +82,12 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public List<Address> getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(List<Address> address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    
 }
